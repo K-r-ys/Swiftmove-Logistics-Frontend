@@ -8,12 +8,13 @@ import PricingPage from "./pages/Pricing";
 import ProductsPage from "./pages/Products";
 import NotFoundPage from "./pages/NotFoundPage";
 import CustomerDashboard from "./components/customer/CustomerDashboard";
-import OrderDetails from "./components/customer/OrderDetails";
+import OrderSupport from "./components/customer/OrderSupport";
 import OrderHistory from "./components/customer/OrderHistory";
 import DriverDashboard from "./components/driver/DriverDashboard";
 import DriverPerformance from "./components/driver/Driverperformance";
 import DriverTasks from "./components/driver/DriverTasks";
 import GetStarted from "./pages/GetStarted";
+import NewOrder from "./pages/NewOrder";
 
 // Styled Content Wrapper
 const ContentWrapper = styled.div`
@@ -35,14 +36,17 @@ const App = () => {
 
           {/* Customers Routes */}
           <Route path="/customers/dashboard" element={<CustomerDashboard />} />
-          <Route path="/customers/orders" element={<OrderDetails />} />
+          <Route path="/order-support" element={<OrderSupport />} />
           <Route path="/customers/history" element={<OrderHistory />} />
+          <Route path="/new-order" element={<NewOrder />} />
+          <Route path="/getstarted" element={<GetStarted />} />
+          <Route path="/order-history" element={<OrderHistory />} />
 
           {/* Drivers Routes */}
           <Route path="/drivers/dashboard" element={<DriverDashboard />} />
           <Route path="/drivers/performance" element={<DriverPerformance />} />
           <Route path="/drivers/tasks" element={<DriverTasks />} />
-          <Route path="/getstarted" element={<GetStarted />} />
+
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </ContentWrapper>

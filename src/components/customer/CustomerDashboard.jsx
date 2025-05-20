@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import backgroundImage from "../../images/background.jpeg";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   min-height: 100vh;
@@ -68,6 +69,8 @@ const CardText = styled.p`
 `;
 
 const CustomerDashboard = () => {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <Title>Delivery Management</Title>
@@ -75,15 +78,26 @@ const CustomerDashboard = () => {
         Manage, track, and update all your delivery orders efficiently.
       </SubTitle>
       <Grid>
-        <Card>
+        <Card
+          onClick={() => navigate("/new-order")}
+          style={{ cursor: "pointer" }}
+        >
           <CardTitle>New Order</CardTitle>
           <CardText>Place a new delivery order with ease.</CardText>
         </Card>
-        <Card>
+
+        <Card
+          onClick={() => navigate("/order-history")}
+          style={{ cursor: "pointer" }}
+        >
           <CardTitle>Order History</CardTitle>
           <CardText>View all your past orders and track status.</CardText>
         </Card>
-        <Card>
+
+        <Card
+          onClick={() => navigate("/order-support")}
+          style={{ cursor: "pointer" }}
+        >
           <CardTitle>Order Support</CardTitle>
           <CardText>Need help? Get in touch with our support team.</CardText>
         </Card>

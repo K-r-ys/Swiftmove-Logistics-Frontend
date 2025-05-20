@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import logisticsImage from "../images/logistics-illustration.jpeg";
+import logisticsImage from "../images/image3.jpeg";
 import backgroundImage from "../images/background.jpeg";
 
 const fadeIn = keyframes`
@@ -151,8 +151,6 @@ const GetStarted = () => {
     fullName: "",
     email: "",
     phone: "",
-    address: "",
-    password: "",
     termsAccepted: false,
   });
 
@@ -164,13 +162,43 @@ const GetStarted = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!formData.termsAccepted) {
       alert("Please accept the terms and conditions.");
       return;
     }
-    alert(`Welcome, ${formData.fullName}! Registration successful.`);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/customers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        alert(`Welcome, ${formData.fullName}! Registration successful.`);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          termsAccepted: false,
+        });
+      } else {
+        alert("Registration failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+      alert("Something went wrong. Please try again later.");
+    }
   };
 
   return (
@@ -205,22 +233,6 @@ const GetStarted = () => {
               name="phone"
               placeholder="Enter your phone number"
               value={formData.phone}
-              onChange={handleChange}
-              required
-            />
-            <Input
-              type="text"
-              name="address"
-              placeholder="Enter your address"
-              value={formData.address}
-              onChange={handleChange}
-              required
-            />
-            <Input
-              type="password"
-              name="password"
-              placeholder="Create a password"
-              value={formData.password}
               onChange={handleChange}
               required
             />
