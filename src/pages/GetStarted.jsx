@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import logisticsImage from "../images/image3.jpeg";
+import logisticsImage from "../images/image5.jpg";
 import backgroundImage from "../images/background.jpeg";
 
 const fadeIn = keyframes`

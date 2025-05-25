@@ -136,12 +136,7 @@ const HomePage = () => {
 
           <Panel onClick={() => navigate("/drivers/dashboard")}>
             <PanelTitle>Drivers</PanelTitle>
-            Manage driver tasks and performance.
-          </Panel>
-
-          <Panel onClick={() => navigate("/customers/history")}>
-            <PanelTitle>Order History</PanelTitle>
-            View customer order history.
+            See our registered drivers.
           </Panel>
         </GridContainer>
       </ContentWrapper>
