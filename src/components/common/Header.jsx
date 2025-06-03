@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FiMenu, FiX } from "react-icons/fi";
-import iconImage from "../../images/icon.png"; // Adjust the path as needed
+
 import { Link } from "react-router-dom";
+const iconImage = "/images/icon.png";
 
 const HeaderContainer = styled.header`
   color: white;
