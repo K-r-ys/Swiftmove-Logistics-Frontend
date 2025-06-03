@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import backgroundImage from "../images/background.jpeg";
 
+const backgroundImage = "/images/background.jpeg";
 const Container = styled.div`
   display: flex;
   align-items: flex-start;

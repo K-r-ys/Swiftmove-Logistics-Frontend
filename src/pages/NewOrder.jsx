@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { FaArrowLeft } from "react-icons/fa";
-import logisticsImage from "../images/image2.jpeg";
-import backgroundImage from "../images/background.jpeg";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+const logisticsImage = "/images/image2.jpeg";
 
+const backgroundImage = "/images/background.jpeg";
 const fadeIn = keyframes`
   from { opacity: 0; }
   to { opacity: 1; }
@@ -102,14 +104,14 @@ const Input = styled.input`
   border-radius: 8px;
   border: none;
   background: rgba(255, 255, 255, 0.18);
-  color: #222;
+  color: #fff;
   font-size: 1rem;
   outline: none;
   transition: background 0.2s;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 
   &::placeholder {
-    color: #888;
+    color: #ccc;
     opacity: 1;
   }
 `;
@@ -119,7 +121,7 @@ const Textarea = styled.textarea`
   border-radius: 8px;
   border: none;
   background: rgba(255, 255, 255, 0.18);
-  color: #222;
+  color: #fff;
   font-size: 1rem;
   outline: none;
   resize: vertical;
@@ -127,7 +129,7 @@ const Textarea = styled.textarea`
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 
   &::placeholder {
-    color: #888;
+    color: #ccc;
     opacity: 1;
   }
 `;
@@ -184,7 +186,7 @@ const NewOrder = () => {
       });
 
       if (response.ok) {
-        alert("Order placed successfully!");
+        toast.success("Order placed successfully!");
         setFormData({
           customer_id: "",
           driver_id: "",
@@ -196,7 +198,7 @@ const NewOrder = () => {
           delivery_date: "",
         });
       } else {
-        alert("Failed to place order.");
+        toast.error("Failed to place order.");
       }
     } catch (err) {
       console.error("Order error:", err);
@@ -205,74 +207,77 @@ const NewOrder = () => {
   };
 
   return (
-    <Container>
-      <Popup>
-        <LeftColumn />
-        <RightColumn>
-          <BackButton onClick={() => navigate(-1)}>
-            <FaArrowLeft />
-          </BackButton>
-          <Title>Place New Delivery Order</Title>
-          <Form onSubmit={handleSubmit}>
-            <Input
-              type="number"
-              name="customer_id"
-              placeholder="Customer ID"
-              value={formData.customer_id}
-              onChange={handleChange}
-              required
-            />
-            <Input
-              type="number"
-              name="driver_id"
-              placeholder="Driver ID (optional)"
-              value={formData.driver_id}
-              onChange={handleChange}
-            />
-            <Input
-              type="text"
-              name="pickup_location"
-              placeholder="Pickup Location"
-              value={formData.pickup_location}
-              onChange={handleChange}
-              required
-            />
-            <Input
-              type="text"
-              name="delivery_location"
-              placeholder="Delivery Location"
-              value={formData.delivery_location}
-              onChange={handleChange}
-              required
-            />
-            <Textarea
-              name="package_details"
-              placeholder="Package Details"
-              value={formData.package_details}
-              onChange={handleChange}
-              rows={4}
-              required
-            />
-            <Input
-              type="date"
-              name="order_date"
-              placeholder="Order Date"
-              value={formData.order_date}
-              onChange={handleChange}
-              required
-            />
-            <Input
-              type="date"
-              name="delivery_date"
-              placeholder="Delivery Date"
-              value={formData.delivery_date}
-              onChange={handleChange}
-            />
-            <SubmitButton type="submit">Submit Order</SubmitButton>
-          </Form>
-        </RightColumn>
-      </Popup>
-    </Container>
+    <>
+      <Container>
+        <Popup>
+          <LeftColumn />
+          <RightColumn>
+            <BackButton onClick={() => navigate(-1)}>
+              <FaArrowLeft />
+            </BackButton>
+            <Title>Place New Delivery Order</Title>
+            <Form onSubmit={handleSubmit}>
+              <Input
+                type="number"
+                name="customer_id"
+                placeholder="Customer ID"
+                value={formData.customer_id}
+                onChange={handleChange}
+                required
+              />
+              <Input
+                type="number"
+                name="driver_id"
+                placeholder="Driver ID"
+                value={formData.driver_id}
+                onChange={handleChange}
+              />
+              <Input
+                type="text"
+                name="pickup_location"
+                placeholder="Pickup Location"
+                value={formData.pickup_location}
+                onChange={handleChange}
+                required
+              />
+              <Input
+                type="text"
+                name="delivery_location"
+                placeholder="Delivery Location"
+                value={formData.delivery_location}
+                onChange={handleChange}
+                required
+              />
+              <Textarea
+                name="package_details"
+                placeholder="Package Details"
+                value={formData.package_details}
+                onChange={handleChange}
+                rows={4}
+                required
+              />
+              <Input
+                type="date"
+                name="order_date"
+                placeholder="Order Date"
+                value={formData.order_date}
+                onChange={handleChange}
+                required
+              />
+              <Input
+                type="date"
+                name="delivery_date"
+                placeholder="Delivery Date"
+                value={formData.delivery_date}
+                onChange={handleChange}
+              />
+              <SubmitButton type="submit">Submit Order</SubmitButton>
+            </Form>
+          </RightColumn>
+        </Popup>
+      </Container>
+      <ToastContainer />
+    </>
   );
 };
 

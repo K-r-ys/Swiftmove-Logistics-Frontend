@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { motion } from "framer-motion";
 import { FaArrowLeft } from "react-icons/fa";
-import backgroundImage from "../../images/background.jpeg";
-import { useNavigate } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+const backgroundImage = "/images/background.jpeg";
 const fadeIn = keyframes`
   from { opacity: 0; }
   to { opacity: 1; }

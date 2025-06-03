@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import backgroundImage from "../../images/background.jpeg";
 import { useNavigate } from "react-router-dom";
-
+import { FaArrowLeft } from "react-icons/fa";
+const backgroundImage = "/images/background.jpeg";
 const Container = styled.div`
   min-height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
@@ -15,6 +15,22 @@ const Container = styled.div`
   justify-content: center;
   padding: 2rem;
   color: #fff;
+`;
+
+const BackButton = styled.button`
+  position: absolute;
+  top: 5rem;
+  left: 1rem;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+  background: transparent;
+  border: none;
+  &:hover {
+    transform: scale(1.1);
+    color: #ffa500;
+  }
 `;
 
 const Title = styled.h2`
@@ -71,8 +87,15 @@ const CardText = styled.p`
 const CustomerDashboard = () => {
   const navigate = useNavigate();
 
+  const handleBackClick = () => {
+    navigate(-1);
+  };
+
   return (
     <Container>
+      <BackButton onClick={handleBackClick}>
+        <FaArrowLeft />
+      </BackButton>
       <Title>Delivery Management</Title>
       <SubTitle>
         Manage, track, and update all your delivery orders efficiently.

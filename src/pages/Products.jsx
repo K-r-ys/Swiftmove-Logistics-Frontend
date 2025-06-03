@@ -2,8 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { FaArrowLeft } from "react-icons/fa";
-import backgroundImage from "../images/background.jpeg";
 import { useNavigate } from "react-router-dom";
+const electronicsImg = "/images/electronics1.jpg";
+const furnitureImg = "/images/furniture.jpg";
+const machineryImg = "/images/machinery.jpg";
+const clothingImg = "/images/clothing.jpg";
+const foodImg = "/images/food.jpg";
+const toysImg = "/images/toys.jpg";
+const backgroundImage = "/images/background.jpeg";
 
 // Container with background and effects
 const Container = styled.div`
@@ -137,6 +143,16 @@ const ProductPage = () => {
     navigate("/");
   };
 
+  // ✅ Assign a unique image to each product
+  const products = [
+    { name: "Electronics", image: electronicsImg },
+    { name: "Furniture", image: furnitureImg },
+    { name: "Machinery", image: machineryImg },
+    { name: "Clothing", image: clothingImg },
+    { name: "Food & Beverages", image: foodImg },
+    { name: "Toys", image: toysImg },
+  ];
+
   return (
     <Container>
       <ContentWrapper
@@ -168,14 +184,7 @@ const ProductPage = () => {
             },
           }}
         >
-          {[
-            "Electronics",
-            "Furniture",
-            "Machinery",
-            "Clothing",
-            "Food & Beverages",
-            "Toys",
-          ].map((category, index) => (
+          {products.map((product, index) => (
             <ProductTile
               key={index}
               whileHover={{ scale: 1.05, rotate: index % 2 === 0 ? 2 : -2 }}
@@ -183,11 +192,8 @@ const ProductPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
             >
-              <ProductImage
-                src={require(`../images/machinery.jpeg`)}
-                alt={category}
-              />
-              <ProductDescription>{category}</ProductDescription>
+              <ProductImage src={product.image} alt={product.name} />
+              <ProductDescription>{product.name}</ProductDescription>
             </ProductTile>
           ))}
         </ProductGrid>

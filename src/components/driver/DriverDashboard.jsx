@@ -2,10 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { FaArrowLeft } from "react-icons/fa";
-import backgroundImage from "../../images/background.jpeg";
-import sampleDriver from "../../images/image4.jpeg";
 import { useNavigate } from "react-router-dom";
+// Individual driver images
+const alexImg = "/images/alex.jpg";
+const brianImg = "/images/brian.jpg";
+const carolImg = "/images/carol.jpg";
+const davidImg = "/images/david.jpg";
+const euniceImg = "/images/norah.jpg";
+const felixImg = "/images/felix.jpg";
 
+const backgroundImage = "/images/background.jpeg";
 const Container = styled.div`
   min-height: 100vh;
   display: flex;
@@ -66,8 +72,8 @@ const Card = styled(motion.div)`
 `;
 
 const DriverImage = styled.img`
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 0.5rem;
@@ -84,12 +90,12 @@ const DriverInfo = styled.p`
 `;
 
 const sampleDrivers = [
-  { name: "Alex Mwangi", info: "Deliveries | Nairobi" },
-  { name: "Brian Otieno", info: "Long Haul | Mombasa" },
-  { name: "Carol Njeri", info: "Courier | Kisumu" },
-  { name: "David Kiptoo", info: "Passenger | Eldoret" },
-  { name: "Eunice Wanjiku", info: "Logistics | Thika" },
-  { name: "Felix Mutua", info: "Bulk Transport | Nakuru" },
+  { name: "Alex Mwangi", info: "Deliveries | Nairobi", image: alexImg },
+  { name: "Brian Otieno", info: "Long Haul | Mombasa", image: brianImg },
+  { name: "Carol Njeri", info: "Courier | Kisumu", image: carolImg },
+  { name: "David Kiptoo", info: "Passenger | Eldoret", image: davidImg },
+  { name: "Eunice Wanjiku", info: "Logistics | Thika", image: euniceImg },
+  { name: "Felix Mutua", info: "Bulk Transport | Nakuru", image: felixImg },
 ];
 
 const DriverDashboard = () => {
@@ -113,7 +119,7 @@ const DriverDashboard = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
             >
-              <DriverImage src={sampleDriver} alt={driver.name} />
+              <DriverImage src={driver.image} alt={driver.name} />
               <DriverName>{driver.name}</DriverName>
               <DriverInfo>{driver.info}</DriverInfo>
             </Card>

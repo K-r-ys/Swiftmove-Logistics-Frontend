@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { FaArrowLeft } from "react-icons/fa"; // Using React Icons
-import backgroundImage from "../images/background.jpeg";
-import { useNavigate } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+const backgroundImage = "/images/background.jpeg";
 const Container = styled.div`
   min-height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
