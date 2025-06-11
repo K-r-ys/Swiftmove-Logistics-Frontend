@@ -15,41 +15,59 @@ import DriverPerformance from "./components/driver/Driverperformance";
 import DriverTasks from "./components/driver/DriverTasks";
 import GetStarted from "./pages/GetStarted";
 import NewOrder from "./pages/NewOrder";
+import Footer from "./components/common/Footer";
+
+// Full Page Background Wrapper
+const AppBackground = styled.div`
+  background: url("/images/background.jpeg") no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  width: 100%;
+`;
 
 // Styled Content Wrapper
 const ContentWrapper = styled.div`
   padding-top: 0px; /* Ensures content starts below the fixed header */
   min-height: calc(100vh - 80px); /* Adjusts for header height */
-  background-color: #f0f0f0;
+  background: transparent;
 `;
 
 const App = () => {
   return (
     <Router>
-      <Header />
-      <ContentWrapper>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutUsPage />} />
-          <Route path="/pricing" element={<PricingPage />} />
-          <Route path="/products" element={<ProductsPage />} />
+      <AppBackground>
+        <Header />
+        <ContentWrapper>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutUsPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/products" element={<ProductsPage />} />
 
-          {/* Customers Routes */}
-          <Route path="/customers/dashboard" element={<CustomerDashboard />} />
-          <Route path="/order-support" element={<OrderSupport />} />
-          <Route path="/customers/history" element={<OrderHistory />} />
-          <Route path="/new-order" element={<NewOrder />} />
-          <Route path="/getstarted" element={<GetStarted />} />
-          <Route path="/order-history" element={<OrderHistory />} />
+            {/* Customers Routes */}
+            <Route
+              path="/customers/dashboard"
+              element={<CustomerDashboard />}
+            />
+            <Route path="/order-support" element={<OrderSupport />} />
+            <Route path="/customers/history" element={<OrderHistory />} />
+            <Route path="/new-order" element={<NewOrder />} />
+            <Route path="/getstarted" element={<GetStarted />} />
+            <Route path="/order-history" element={<OrderHistory />} />
 
-          {/* Drivers Routes */}
-          <Route path="/drivers/dashboard" element={<DriverDashboard />} />
-          <Route path="/drivers/performance" element={<DriverPerformance />} />
-          <Route path="/drivers/tasks" element={<DriverTasks />} />
+            {/* Drivers Routes */}
+            <Route path="/drivers/dashboard" element={<DriverDashboard />} />
+            <Route
+              path="/drivers/performance"
+              element={<DriverPerformance />}
+            />
+            <Route path="/drivers/tasks" element={<DriverTasks />} />
 
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </ContentWrapper>
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </ContentWrapper>
+        <Footer />
+      </AppBackground>
     </Router>
   );
 };

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FiMenu, FiX } from "react-icons/fi";
-
 import { Link } from "react-router-dom";
+
 const iconImage = "/images/icon.png";
 
 const HeaderContainer = styled.header`
@@ -15,11 +15,16 @@ const HeaderContainer = styled.header`
   position: fixed;
   top: 0;
   z-index: 1000;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
 
-  @media (max-width: 768px) {
-    padding: 1rem;
-    justify-content: space-between;
-  }
+  background: ${({ scrolled }) =>
+    scrolled ? "rgba(255, 255, 255, 0.05)" : "transparent"};
+  backdrop-filter: ${({ scrolled }) =>
+    scrolled ? "blur(20px) saturate(180%)" : "none"};
+  -webkit-backdrop-filter: ${({ scrolled }) =>
+    scrolled ? "blur(20px) saturate(180%)" : "none"};
+  border-bottom: ${({ scrolled }) =>
+    scrolled ? "1px solid rgba(255, 255, 255, 0.15)" : "none"};
 `;
 
 const CompanyName = styled.div`
@@ -65,7 +70,6 @@ const NavLink = styled(Link)`
   color: white;
   padding: 0.5rem 1rem;
   transition: background-color 0.3s, color 0.3s;
-
   border-radius: 4px;
 
   &:hover {
@@ -106,9 +110,18 @@ const DropdownMenu = styled.div`
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <HeaderContainer>
+    <HeaderContainer scrolled={scrolled}>
       <CompanyName>
         <img src={iconImage} alt="Company Icon" />
         Swiftmove
